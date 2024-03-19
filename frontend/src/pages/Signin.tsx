@@ -1,11 +1,11 @@
 import Quote from "../Components/Quote";
 import axios from "axios";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import FormInput from "../Components/FormInput";
 import FormHeading from "../Components/FormHeading";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-import {  Puff } from "react-loader-spinner";
+import { Puff } from "react-loader-spinner";
 
 function Signin() {
   const [email, setEmail] = useState("");
@@ -13,6 +13,13 @@ function Signin() {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = Cookies.get("token");
+    if (token) {
+      navigate("/");
+    }
+  }, []);
 
   const handleOnSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -32,9 +39,9 @@ function Signin() {
       console.log(response);
       const token = response.data.jwt;
       Cookies.set("token", token);
-      navigate("/blog");
       setLoading(false);
       alert("Login Successful");
+      window.location.href = "/blog";
     } catch (err: any) {
       console.log(err.response.data.error);
       setLoading(false);
@@ -76,11 +83,8 @@ function Signin() {
                   </button>
                 ) : (
                   <div className="pt-2">
-                    <Puff
-                      width="60"
-                      color="gray"
-                    />
-                  </div>  
+                    <Puff width="60" color="gray" />
+                  </div>
                 )}
               </div>
             </form>

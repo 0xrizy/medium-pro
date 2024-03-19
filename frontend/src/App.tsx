@@ -5,6 +5,7 @@ import Blog from "./pages/Blog";
 import Navbar from "./Components/Navbar";
 import Home from "./pages/Home";
 import DetailedBlog from "./pages/DetailedBlog";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/signin" element={<Signin />} />
           <Route path="/" element={<Home />} />
           <Route path="/blog/:id" element={<DetailedBlog />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </BrowserRouter>
     </>

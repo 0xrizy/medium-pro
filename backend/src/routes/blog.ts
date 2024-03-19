@@ -32,7 +32,7 @@ blogRouter.post("/", async (c) => {
     where: {
       id: userId,
     },
-  })
+  });
 
   if (!author) {
     c.status(403);
@@ -106,8 +106,48 @@ blogRouter.get("/", async (c) => {
   }).$extends(withAccelerate());
 
   const posts = await prisma.post.findMany();
-  console.log(posts);
   return c.json(posts);
+});
+
+blogRouter.get("/profile/me", async (c) => {
+  const userId = c.get("userId");
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL,
+  }).$extends(withAccelerate());
+
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        id: userId,
+      },
+    });
+
+    if (!user) {
+      c.status(403);
+      return c.json({
+        error: "User not found. Please logout and login again.",
+      });
+    }
+    
+    const posts = await prisma.post.findMany({
+      where: {
+        authorId: userId,
+      },
+    });
+    console.log("🚀 ~ blogRouter.get ~ posts:", posts)
+    console.log("🚀 ~ blogRouter.get ~ user:", user)
+    
+    
+
+    return c.json({
+      user,
+      posts,
+    });
+  } catch (error) {
+    console.error("Error fetching profile:", error);
+    c.status(500);
+    return c.json({ error: "Internal server error." });
+  }
 });
 
 // {

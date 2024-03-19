@@ -1,6 +1,18 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 function Home() {
+  const navigate = useNavigate();
+
+  const [token, setToken] = useState("");
+  useEffect(() => {
+    const tokenFromCookies: any = Cookies.get("token");
+    if (!tokenFromCookies) {
+      navigate("/signin");
+    }
+    setToken(tokenFromCookies);
+  }, []);
   return (
     <div>
       <section className="bg-white h-screen">
@@ -13,18 +25,31 @@ function Home() {
               Craft Your Narrative, Share Your Insight: Unleash Your Creativity
               on Medium, Where Every Story Finds Its Stage
             </p>
-            <Link
-              to={"/signin"}
-              className="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-gray-700 border border-gray-300 rounded-2xl  bg-primary-700 hover:bg-blue-500 hover:text-white focus:ring-4 focus:ring-primary-300 "
-            >
-              Login
-            </Link>
-            <Link
-              to={"/signup"}
-              className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-700 border border-gray-300 rounded-2xl  hover:bg-green-500 hover:text-white focus:ring-4 focus:ring-gray-100 "
-            >
-              Create an account
-            </Link>
+            {!token ? (
+              <div className="flex items-center space-x-4">
+                <Link
+                  to={"/signin"}
+                  className="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-gray-700 border border-gray-300 rounded-2xl  bg-primary-700 hover:bg-blue-500 hover:text-white focus:ring-4 focus:ring-primary-300 "
+                >
+                  Login
+                </Link>
+                <Link
+                  to={"/signup"}
+                  className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-700 border border-gray-300 rounded-2xl  hover:bg-green-500 hover:text-white focus:ring-4 focus:ring-gray-100 "
+                >
+                  Create an account
+                </Link>
+              </div>
+            ) : (
+              <div>
+                <Link
+                  to={"/blog"}
+                  className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-700 border border-gray-300 rounded-2xl  hover:bg-green-500 hover:text-white focus:ring-4 focus:ring-gray-100 "
+                >
+                  Read Blogs
+                </Link>
+              </div>
+            )}
           </div>
           <div className="hidden lg:mt-0 lg:col-span-5 lg:flex  ">
             <img

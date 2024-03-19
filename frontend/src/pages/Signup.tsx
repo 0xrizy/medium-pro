@@ -1,6 +1,6 @@
 import Quote from "../Components/Quote";
 import axios from "axios";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import FormInput from "../Components/FormInput";
 import FormHeading from "../Components/FormHeading";
 import { useNavigate } from "react-router-dom";
@@ -14,6 +14,12 @@ function Signup() {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
+  useEffect(() => {
+    const token = Cookies.get("token");
+    if (token) {
+      navigate("/");
+    }
+  }, []);
 
   const handleOnSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -34,8 +40,8 @@ function Signup() {
       const token = response.data.jwt;
       Cookies.set("token", token);
       setLoading(false);
-      navigate("/blog");
       alert("account created successfully");
+      window.location.href = "/blog";
     } catch (err: any) {
       console.log(err.response.data.error);
       setLoading(false);
