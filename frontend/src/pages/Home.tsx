@@ -9,7 +9,7 @@ function Home() {
   useEffect(() => {
     const tokenFromCookies: any = Cookies.get("token");
     if (!tokenFromCookies) {
-      navigate("/signin");
+      navigate("/signup");
     }
     setToken(tokenFromCookies);
   }, []);
