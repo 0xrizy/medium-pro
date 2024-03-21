@@ -96,9 +96,17 @@ function Navbar() {
                   </Link>
                 </li>
                 <li>
+                  <Link
+                    to={"/newBlog"}
+                    className="block py-2 px-3 rounded hover:bg-gray-100 hover:text-gray-700 bg-blue-500 text-white font-bold"
+                  >
+                    Create Blog
+                  </Link>
+                </li>
+                <li>
                   <button
                     onClick={logout}
-                    className="block py-2 px-3 text-red-700 rounded hover:bg-gray-100 hover:text-gray-700"
+                    className="block py-2 px-3 text-red-700 rounded hover:bg-gray-100 hover:text-gray-700 "
                   >
                     Logout
                   </button>
