@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import avatar1 from "../assets/avatar1.png";
 import avatar2 from "../assets/avatar2.png";
 
 interface ArticleProps {
