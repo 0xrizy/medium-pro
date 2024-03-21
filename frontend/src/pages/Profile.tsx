@@ -25,6 +25,8 @@ function Profile(): JSX.Element {
   const [posts, setPosts] = useState<Post[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  
+  
 
   useEffect(() => {
     const fetchProfileData = async () => {

@@ -128,16 +128,14 @@ blogRouter.get("/profile/me", async (c) => {
         error: "User not found. Please logout and login again.",
       });
     }
-    
+
     const posts = await prisma.post.findMany({
       where: {
         authorId: userId,
       },
     });
-    console.log("🚀 ~ blogRouter.get ~ posts:", posts)
-    console.log("🚀 ~ blogRouter.get ~ user:", user)
-    
-    
+    console.log("🚀 ~ blogRouter.get ~ posts:", posts);
+    console.log("🚀 ~ blogRouter.get ~ user:", user);
 
     return c.json({
       user,
