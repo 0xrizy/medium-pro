@@ -37,7 +37,7 @@ function Profile(): JSX.Element {
       }
       try {
         const response = await axios.get(
-          "http://127.0.0.1:8787/api/v1/blog/profile/me",
+          "https://backend.rizul-thakur1.workers.dev/api/v1/blog/profile/me",
           {
             headers: {
               Authorization: `Bearer ${tokenFromCookies}`,

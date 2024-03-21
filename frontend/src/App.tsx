@@ -6,6 +6,7 @@ import Navbar from "./Components/Navbar";
 import Home from "./pages/Home";
 import DetailedBlog from "./pages/DetailedBlog";
 import Profile from "./pages/Profile";
+import NewBlog from "./pages/NewBlog";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/blog/:id" element={<DetailedBlog />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/newBlog" element={<NewBlog />} />
         </Routes>
       </BrowserRouter>
     </>

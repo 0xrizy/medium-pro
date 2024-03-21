@@ -5,7 +5,7 @@ import { useState } from "react";
 import Edit from "./Edit";
 
 interface ArticleProps {
-  postId: string; // Renamed key to postId
+  postId: string;
   title: string;
   content: string;
   name: string;

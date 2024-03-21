@@ -26,7 +26,7 @@ function Signup() {
     setLoading(true);
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8787/api/v1/user/signup",
+        "https://backend.rizul-thakur1.workers.dev/api/v1/user/signup",
         {
           name,
           email,

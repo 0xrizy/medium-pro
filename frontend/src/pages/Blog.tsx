@@ -24,7 +24,7 @@ function Blog() {
           window.location.href = "/signin";
         }
         const response = await axios.get<Post[]>(
-          "http://127.0.0.1:8787/api/v1/blog",
+          "https://backend.rizul-thakur1.workers.dev/api/v1/blog",
           {
             headers: {
               Authorization: `Bearer ${token}`,

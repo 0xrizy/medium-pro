@@ -25,7 +25,7 @@ function Edit({ postId, title, content, name }: ArticleProps) {
     try {
       const tokenFromCookies: any = Cookies.get("token");
       const response = await axios.put(
-        "http://127.0.0.1:8787/api/v1/blog",
+        "https://backend.rizul-thakur1.workers.dev/api/v1/blog",
         {
           id: postId,
           title: updatedTitle,
